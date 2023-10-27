@@ -1,0 +1,190 @@
+                <html lang="en">
+
+<head>
+    <title>Predict</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+ <style>
+        body {
+            background-color: #b5e7a0;
+            background-size: cover;
+          
+            background-repeat: no-repeat;
+            background-position: center center;
+            max-width: 100%;
+        }
+        
+         .bar
+        {
+        margin: 0px;
+        padding:20px;
+        background-color:#e3eaa7;
+        opacity:0.9;
+        color:black;
+        font-family:'Roboto',sans-serif;
+        font-style: italic;
+        border-radius:20px;
+        font-size:25px;
+        }
+        a
+        {
+        color:black;
+        float:right;
+        text-decoration:none;
+        font-style:normal;
+        padding-right:20px;
+        }
+        a:hover{
+        background-color:black;
+        color:green;
+        border-radius:15px;0
+        font-size:30px;
+        padding-left:10px;
+        }
+        .form-box {
+            margin: 2em auto;
+            padding: 2em;
+            max-width: 500px;
+            background-color:#d5e1df;
+            opacity: 0.9;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-style: bold;
+            font-size: 25px;
+            color: black;
+        }
+        
+        label {
+            color: black;
+/*            font-style: italic;*/
+            font-size: 16px;
+            display: block;
+            margin-bottom: 0.5em;
+            text-align:left;
+        }
+        
+        input[type=text], select {
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 1em;
+        }
+        
+        ::placeholder {
+            color: gray;
+            font-style: italic;
+            font-size: 16px;
+        }
+        
+        input[type=submit] {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+            background-color: #0069d9;
+        }
+        
+        h1.predict {
+            color: black;
+            font-family: 'Lato', sans-serif;
+            font-size: 30px;
+            margin-top: 2em;
+        }
+
+        #heading{
+           font-family: 'Lato', sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="bar">
+<a href="/pred">Predict</a>
+<a href="/home">Home</a>
+<br>
+</div>
+    
+    <div class="container">
+       <center> <div id="content" style="margin-top:2em">
+       <center><font color="black" size="14" id="heading" >Kickstarter Project Success Prediction</font></center>
+
+            <div class="form-box">
+    		<form action="{{ url_for('predict') }}" method="POST">
+
+<!-- 'goal', 'deadline', 'launched_at', 'staff_pick', 'backers_count',
+       'usd_pledged', 'category', 'state' -->
+
+ 
+
+ <label for="goal">Goal:</label>
+<input class="form-input" type="text" id="goal" name="goal" placeholder="Enter the goal in USD ($)"><br><br>
+
+<!-- <label for="deadline">Deadline Date:</label>
+<input class="form-input" type="text" id="deadline" name="deadline" placeholder="Enter the deadline in DD-MM-YYYY format"><br><br>
+
+<label for="launched_at">Launch Date (DD-MM-YYYY):</label>
+<input class="form-input" type="text" id="launched_at" name="launched_at" placeholder="Enter the launch date in DD-MM-YYYY format"><br><br>
+ -->
+<label for="staff_pick">Projects We Love:</label>
+<select id="staff_pick" name="staff_pick">
+
+  <option value="True">Yes</option>
+  <option value="False">No</option>
+</select><br><br>
+<label for="backers_count">Number of backers:</label>
+<input class="form-input" type="text" id="backers_count" name="backers_count" placeholder="Enter the number of backers"><br><br>
+
+<label for="usd_pledged">Pledged Amount:</label>
+<input class="form-input" type="text" id="usd_pledged" name="usd_pledged" placeholder="Enter the pledged amount in USD ($)"><br><br>
+
+<label for="category">Category:</label>
+<select id="category" name="category" >
+
+ 
+  <option value="Academic">Academic</option>
+  <option value="Places">Places</option> 
+  <option value="Blues">Blues</option>
+  <option value="Restaurants">Restaurants</option>
+  <option value="Webseries">Webseries</option>
+  <option value="Thrillers">Thrillers</option>
+  <option value="Shorts">Shorts</option>
+  <option value="Web">Web</option>
+  <option value="Apps">Apps</option>
+  <option value="Gadgets">Gadgets</option>
+  <option value="Hardware">Hardware</option>
+  <option value="Festivals">Festivals</option>
+  <option value="Plays">Plays</option>
+  <option value="Musical">Musical</option>
+  <option value="Flight">Flight</option>
+  <option value="Spaces">Spaces</option>
+  <option value="Immersive">Immersive</option>
+  <option value="Experimental">Experimental</option>
+  <option value="Comedy">Comedy</option>
+  <option value="Wearables">Wearables</option>
+  <option value="Sound">Sound</option>
+  <option value="Software">Software</option>
+  <option value="Robots">Robots</option>
+  <option value="Makerspaces">Makerspaces</option>
+</select><br><br>
+        		<input type="submit" class="my-cta-button" value="Predict">
+        	</form>
+        </div>
+    
+	
+	<br>
+	 <h1 class="predict" style=";font-size:30">Predicted State of Project: {{ prediction_text }}</h1>
+       </div></center>
+    </div>
+    <br>
+</body>
